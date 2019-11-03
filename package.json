@@ -1,0 +1,13 @@
+{
+  "name": "LIRI",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "sayHello": "liriapp.js"
+  },
+  "dependencies": {
+    "prompt": "^1.0.0"
+  }
+}

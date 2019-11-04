@@ -1,3 +1,60 @@
+
+var request = require('request');
+
+//============================= OMDB API ===============================================
+var request = require('request');
+var nodeArgs = process.argv;
+var movieName = "";
+var apikey="4a0c69bd";
+
+function omdbiRequest() {
+    console.log(process.argv.length);
+    movieName = process.argv[3];
+    console.log(movieName);
+    var queryUrl = 'http://www.omdbapi.com/?t=' + movieName + '&y=&plot=full&tomatoes=true&r=json&apikey='+apikey;
+    console.log(queryUrl);
+
+    request(queryUrl, function(error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log("\n===========================================" +
+                "\nSearch Results:" +
+                "\n-------------------------------------------");
+
+            var movieResults = "\nMovie Title: " + JSON.parse(body)["Title"] +
+                "\n" +
+                "\nYear Came Out: " + JSON.parse(body)["Year"] +
+                "\nIMBDB rating: " + JSON.parse(body)["imdbRating"] +
+                "\nCountry of Production: " + JSON.parse(body)["Country"] +
+                "\nLanguage: " + JSON.parse(body)["Language"] + "\n" +
+                "\nPlot: " + JSON.parse(body)["Plot"] +
+                "\n"+
+                "\nActors: " + JSON.parse(body)["Actors"] + "\n" +
+                "\nRotten Tomatoes Rating: " + JSON.parse(body)["tomatoRating"] +
+                "\nRotten Tomatoes URL: " + JSON.parse(body)["tomatoURL"] +
+                "\n==========================================";
+            console.log(movieResults);
+        }
+    });
+}
+var CommandInstruction = "node liriapp.js movie-info [specify movie name here]";
+var NoMessage = "\n==========================================" +
+    "\nYou haven't specify any movie name: " +
+    "\nHere is the command: " + CommandInstruction +
+    "\n==========================================";
+
+
+
+// ========== Main Process =========
+if (process.argv[2] == "movie-info") {
+    console.log(process.argv[3]);
+    if (process.argv[3] == null) {
+        console.log(NoMessage);
+    } else {
+        console.log("omdbiRequest entry");
+        omdbiRequest();
+    }
+}
+
 /*var http = require('http');
 
 http.createServer(function (req, res) {
@@ -5,7 +62,7 @@ http.createServer(function (req, res) {
     res.end('Hello!');
 }).listen(8081);*/
 
-const prompt = require('prompt');
+/*const prompt = require('prompt');
 
 const properties = [
     {
@@ -31,4 +88,6 @@ prompt.get(properties, function (err, result) {
 function onErr(err) {
     console.log(err);
     return 1;
-}
+}*/
+
+

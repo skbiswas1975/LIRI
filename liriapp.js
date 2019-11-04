@@ -11,7 +11,7 @@ function omdbiRequest() {
     console.log(process.argv.length);
     movieName = process.argv[3];
     console.log(movieName);
-    var queryUrl = 'http://www.omdbapi.com/?t=' + movieName + '&y=&plot=full&tomatoes=true&r=json&apikey='+apikey;
+    var queryUrl = 'http://www.omdbapi.com/?apikey='+apikey+'&t=' + movieName + '&y=&plot=full&r=json';
     console.log(queryUrl);
 
     request(queryUrl, function(error, response, body) {
@@ -22,15 +22,13 @@ function omdbiRequest() {
 
             var movieResults = "\nMovie Title: " + JSON.parse(body)["Title"] +
                 "\n" +
-                "\nYear Came Out: " + JSON.parse(body)["Year"] +
-                "\nIMBDB rating: " + JSON.parse(body)["imdbRating"] +
+                "\nYear of release: " + JSON.parse(body)["Year"] +
+                "\nRating: " + JSON.parse(body)["imdbRating"] +
                 "\nCountry of Production: " + JSON.parse(body)["Country"] +
                 "\nLanguage: " + JSON.parse(body)["Language"] + "\n" +
-                "\nPlot: " + JSON.parse(body)["Plot"] +
+                "\nStory: " + JSON.parse(body)["Plot"] +
                 "\n"+
-                "\nActors: " + JSON.parse(body)["Actors"] + "\n" +
-                "\nRotten Tomatoes Rating: " + JSON.parse(body)["tomatoRating"] +
-                "\nRotten Tomatoes URL: " + JSON.parse(body)["tomatoURL"] +
+                "\nCasting: " + JSON.parse(body)["Actors"] + "\n" +
                 "\n==========================================";
             console.log(movieResults);
         }

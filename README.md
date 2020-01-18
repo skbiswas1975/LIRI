@@ -20,4 +20,8 @@ or
 
 node liriapp.js movie-info [any movie name of your choice]
 
+node liriapp.js movie-info gladiator
+
+node liriapp.js movie-info the+usual+suspect
+
 Please note: for movie names with space between words, please add a plus(+) sign replacing the space.
